@@ -6,18 +6,16 @@ The frequency of values must be same
 
 function naiveSame(arr1, arr2) {
     if (arr1.length !== arr2.length) {
-        return "The frequency of values must be same"
+        return 'The frequency of values must be same';
     }
     for (let i = 0; i < arr1.length; ++i) {
-        let correctIndex = arr2.indexOf(arr1[i] ** 2)
+        let correctIndex = arr2.indexOf(arr1[i] ** 2);
         if (correctIndex === -1) {
-            return false
+            return false;
         }
     }
     return true;
 }
-
-console.log(naiveSame([1, 2, 3], [41, 9]));
 
 
 //Stack Implementation
@@ -72,13 +70,46 @@ class Stack {
     }
 }
 
-const stack = new Stack();
-stack.push(12);
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(30);
-console.log(stack.peek());
-console.log('peek');
-console.log(`Length ${stack.length()}`);
-stack.print()
+function decimalToBinary(number) {
+    let stack = new Stack();
+    let rem;
+    let binaryString = '';
+
+    while (number > 0) {
+        rem = Math.floor(number % 2);
+        stack.push(rem);
+        number = Math.floor(number / 2);
+    }
+    while (!stack.isEmpty()) {
+        binaryString += stack.pop().toString()
+    }
+    return binaryString;
+}
+
+function baseConverter(decimalNumber, base) {
+    const stack = new Stack();
+    const digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let number = decimalNumber;
+    let rem;
+    let baseString = '';
+
+    if(!(base >= 0 && base <=36)) {
+        return '';
+    }
+
+    while (number > 0) {
+        rem = Math.floor(number % base);
+        stack.push(rem)
+        number = Math.floor(number / base);
+    }
+
+    while (!stack.isEmpty()) {
+        baseString += digits[stack.pop()];
+        console.log(`Base String in while ${stack.pop()}`)
+    }
+    console.log(baseString)
+    return baseString
+}
+
+
+console.log(baseConverter(11, 16));
