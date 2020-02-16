@@ -1,5 +1,13 @@
-const arr = [2, 3, 4,7, 6,  8];
-const dictionary = {the: 22038615, be: 12545825, and: 10741073, of: 10343885, a: 10144200, in: 6996437, to: 6332195};
+const arr = [2, 3, 4, 7, 6, 8];
+const dictionary = {
+    the: 22038615,
+    be: 12545825,
+    and: 10741073,
+    of: 10343885,
+    a: 10144200,
+    in: 6996437,
+    to: 6332195
+};
 
 // function personCount(person) {
 //     let map = new Map();
@@ -65,4 +73,28 @@ function bubbleSort(n) {
     return n
 }
 
-console.log(bubbleSort(arr));
+const countFirstNames = (person) => {
+    let firstNames = new Map();
+    person.forEach(person => {
+        firstNames.set(person.firstName, (firstNames.get(person.firstName) || 0) + 1)
+    })
+    return firstNames
+}
+
+const person = [{
+        firstName: 'Akaki'
+    },
+    {
+        firstName: 'Akaki'
+    },
+    {
+        firstName: 'Akaki'
+    },
+    {
+        firstName: 'Eka'
+    },
+    {
+        firstName: 'Tamuna'
+    }
+];
+console.log(countFirstNames(person))
