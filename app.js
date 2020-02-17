@@ -1,4 +1,33 @@
 const arr = [2, 3, 4, 7, 6, 8];
+const person = [
+    {
+        firstName: 'Akaki',
+        lastName: 'Khotcholava',
+    },
+    {
+        firstName: 'Akaki',
+        lastName: 'Khotcholava',
+
+    },
+    {
+        firstName: 'Eka',
+        lastName: 'Chkhaidze',
+
+    },
+    {
+        firstName: 'Eka',
+        lastName: 'Chkhaidze',
+    },
+    {
+        firstName: 'Tamuna',
+        lastName: 'Khotcholava',
+    },
+
+    {
+        firstName: 'Tamuna',
+    },
+];
+
 const dictionary = {
     the: 22038615,
     be: 12545825,
@@ -6,7 +35,7 @@ const dictionary = {
     of: 10343885,
     a: 10144200,
     in: 6996437,
-    to: 6332195
+    to: 6332195,
 };
 
 // function personCount(person) {
@@ -70,31 +99,29 @@ function bubbleSort(n) {
             }
         }
     }
-    return n
+    return n;
 }
 
 const countFirstNames = (person) => {
     let firstNames = new Map();
     person.forEach(person => {
-        firstNames.set(person.firstName, (firstNames.get(person.firstName) || 0) + 1)
-    })
-    return firstNames
-}
+        firstNames.set(person.firstName, (firstNames.get(person.firstName) || 0) + 1);
+    });
+    return firstNames;
+};
 
-const person = [{
-        firstName: 'Akaki'
-    },
-    {
-        firstName: 'Akaki'
-    },
-    {
-        firstName: 'Akaki'
-    },
-    {
-        firstName: 'Eka'
-    },
-    {
-        firstName: 'Tamuna'
-    }
-];
-console.log(countFirstNames(person))
+const findDuplicatePerson = (person) => {
+    let duplicates = new Map();
+    person.forEach(person => {
+        if(!person.hasOwnProperty('lastName')) {
+            duplicates.set(person.firstName, (duplicates.get(person.firstName) || 0) + 1)
+        } else {
+            duplicates.set(`${person.firstName} ${person.lastName}`,
+                (duplicates.get(`${person.firstName} ${person.lastName}`) || 0) + 1);
+        }
+
+    });
+    return duplicates;
+};
+
+console.log(findDuplicatePerson(person));
