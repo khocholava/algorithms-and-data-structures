@@ -113,13 +113,11 @@ const countFirstNames = (person) => {
 const findDuplicatePerson = (person) => {
     let duplicates = new Map();
     person.forEach(person => {
-        if(!person.hasOwnProperty('lastName')) {
-            duplicates.set(person.firstName, (duplicates.get(person.firstName) || 0) + 1)
-        } else {
-            duplicates.set(`${person.firstName} ${person.lastName}`,
-                (duplicates.get(`${person.firstName} ${person.lastName}`) || 0) + 1);
-        }
-
+        duplicates.set(
+            person.hasOwnProperty('lastName')
+                ? `${person.firstName} ${person.lastName}`
+                : person.firstName,
+            (duplicates.get(`${person.firstName} ${person.lastName}`) || 0) + 1);
     });
     return duplicates;
 };
